@@ -1,98 +1,102 @@
 # 🧠 ASPECT-BASED SENTIMENT ANALYSIS (ABSA)
 
-This project tackles **Aspect-Based Sentiment Analysis (ABSA)** in two stages:
-
-- 🔍 **Task 1: Aspect Term Extraction (ATE)** – Identify opinion targets (aspects) in a sentence.  
-- 🎯 **Task 2: Aspect Sentiment Classification (ASC)** – Predict the sentiment (**positive**, **negative**, **neutral**, or **conflict**) for each extracted aspect.
+A two-stage pipeline for **Aspect-Based Sentiment Analysis**, designed to extract opinion targets and classify sentiments at a fine-grained level.
 
 ---
 
-## 📌 MOTIVATION
+## 🎯 TASK OVERVIEW
 
-Traditional sentiment analysis assigns a **single sentiment** to an entire sentence. However, real-world reviews often contain **multiple sentiments targeting different aspects**.
+### 🔍 Task 1: Aspect Term Extraction (ATE)
+Identify **opinion targets (aspects)** in a sentence.
 
-🧾 **Example**:  
+### 🎯 Task 2: Aspect Sentiment Classification (ASC)
+Predict **sentiment polarity** (**positive**, **negative**, **neutral**, **conflict**) for each extracted aspect.
+
+---
+
+## 💡 MOTIVATION
+
+Traditional sentiment analysis gives a single label to a sentence, but real-world reviews often express **multiple sentiments for different aspects**.
+
+#### 🧾 Example:
 > *"The food was excellent, but the service was disappointing."*  
 > → `food` → ⭐️ **positive**  
 > → `service` → ❌ **negative**
 
-✨ **ABSA** provides **fine-grained insights**, making it especially valuable in domains like restaurants, product reviews, and customer feedback.
+🔍 **ABSA** offers **fine-grained insights**, critical in domains like:
+- Restaurant reviews
+- Product analysis
+- Customer feedback
 
 ---
 
-## 🔧 PROJECT STRUCTURE
+## 📁 PROJECT STRUCTURE
 
-├── Task1/ # Aspect Term Extraction (ATE)
-│ ├── train.json
-│ ├── train.task1.json
-│ ├── test.json
-│ ├── test_task1.json
-│ ├── val.json
-│ ├── val.task1.json
-│ ├── vocab_task1.json
-│ ├── Aspect Term Extraction.ipynb
-│
-├── task2/ # Aspect Sentiment Classification (ASC)
-│ ├── train.json
-│ ├── train_task2.json
-│ ├── test.json
-│ ├── test_task2.json
-│ ├── val.json
-│ ├── val_task2.json
-│ ├── vocab_task2.json
-│ ├── Aspect Based Sentiment Analysis.ipynb
-│
-└── README.md # You're here!
+```text
+Task1/                       # Aspect Term Extraction (ATE)
+├── train.json
+├── train.task1.json
+├── test.json
+├── test_task1.json
+├── val.json
+├── val.task1.json
+├── vocab_task1.json
+└── Aspect Term Extraction.ipynb
 
----
+task2/                       # Aspect Sentiment Classification (ASC)
+├── train.json
+├── train_task2.json
+├── test.json
+├── test_task2.json
+├── val.json
+├── val_task2.json
+├── vocab_task2.json
+└── Aspect Based Sentiment Analysis.ipynb
 
-## 🧩 TASK 1 – ASPECT TERM EXTRACTION (ATE)
+README.md                   # You're here!
 
-### ✅ Objective
+🧩 TASK 1 – ASPECT TERM EXTRACTION (ATE)
+✅ Objective
+Extract exact spans from a sentence that represent opinion targets.
 
-Extract the **exact spans** (aspect terms) from a sentence that express opinions.
+🧠 Model Specs
+🔧 Architecture: Bi-GRU / RNN
 
-### 🧠 Model Details
+🔤 Embedding: GloVe / fastText
 
-- 🧱 **Architecture**: Bi-directional GRU / RNN  
-- 🔤 **Embedding**: GloVe / fastText (pre-trained)  
-- 🏷️ **Tagging Scheme**: BIO (Beginning, Inside, Outside)  
-- ❌ **Loss Function**: CrossEntropyLoss (with masking)  
-- 📊 **Evaluation Metric**: Chunk-level F1 (conlleval)
+🏷️ Tagging: BIO (Beginning, Inside, Outside)
 
-### 🧪 Best Performing Models
+❌ Loss Function: CrossEntropyLoss with masking
 
-| Model              | Validation F1 |
-|--------------------|---------------|
-| GRU + fastText     | **0.7165**    |
-| GRU + GloVe        | 0.7092        |
-| RNN + fastText     | 0.7013        |
-| RNN + GloVe        | 0.7000        |
+📊 Evaluation: Chunk-level F1 (conlleval)
 
-**Test F1 (Best Model – GRU + fastText)**: **0.7132**
+🏆 Results
+Model	Validation F1
+GRU + fastText	0.7165
+GRU + GloVe	0.7092
+RNN + fastText	0.7013
+RNN + GloVe	0.7000
 
----
+Test F1 (Best): ⭐️ 0.7132
 
-## 💬 TASK 2 – ASPECT SENTIMENT CLASSIFICATION (ASC)
+💬 TASK 2 – ASPECT SENTIMENT CLASSIFICATION (ASC)
+✅ Objective
+For each aspect term, predict its sentiment label.
 
-### ✅ Objective
+🧠 Model Specs
+🔧 Architecture: Bi-LSTM with Aspect-Specific Attention
 
-For each extracted aspect term, predict its **sentiment label**.
+🔤 Embedding: GloVe (300D)
 
-### 🧠 Model Details
+🧠 Input: Context + aspect indices
 
-- 🧱 **Architecture**: Bi-LSTM with Aspect-Specific Attention  
-- 🔤 **Embedding**: GloVe (300D)  
-- 🧠 **Input**: Context tokens + aspect term index  
-- 🎯 **Attention**: Focuses on relevant context around aspect  
-- ❌ **Loss Function**: CrossEntropyLoss  
-- 📊 **Evaluation Metric**: Accuracy
+🎯 Attention: Focus on relevant context around each aspect
 
-### 🏆 Best Results
+❌ Loss Function: CrossEntropyLoss
 
-| Metric                     | Score     |
-|----------------------------|-----------|
-| Validation Accuracy        | **0.6523** |
-| Test Accuracy (Best Model) | **0.6250** |
+📊 Evaluation: Accuracy
 
----
+🏆 Results
+Metric	Score
+Validation Accuracy	0.6523
+Test Accuracy (Best Model)	0.6250
