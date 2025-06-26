@@ -1,4 +1,4 @@
-# 🧠 <span style="font-size: 2em;">Aspect-Based Sentiment Analysis (ABSA)</span>
+# 🧠 Aspect-Based Sentiment Analysis (ABSA)
 
 This project tackles **Aspect-Based Sentiment Analysis (ABSA)** in two stages:
 
@@ -7,7 +7,7 @@ This project tackles **Aspect-Based Sentiment Analysis (ABSA)** in two stages:
 
 ---
 
-## 📌 <span style="font-size: 1.5em;">Motivation</span>
+## 📌 Motivation
 
 Traditional sentiment analysis assigns a **single sentiment** to an entire sentence. However, real-world reviews often contain **multiple sentiments targeting different aspects**.
 
@@ -20,7 +20,7 @@ Traditional sentiment analysis assigns a **single sentiment** to an entire sente
 
 ---
 
-## 🔧 <span style="font-size: 1.5em;">Project Structure</span>
+## 🔧 Project Structure
 
 ├── Task1/ # Aspect Term Extraction (ATE)
 │ ├── train.json
@@ -46,19 +46,20 @@ Traditional sentiment analysis assigns a **single sentiment** to an entire sente
 
 ---
 
-## 🧩 <span style="font-size: 1.5em;">Task 1 – Aspect Term Extraction (ATE)</span>
+## 🧩 Task 1 – Aspect Term Extraction (ATE)
 
-### ✅ **Objective**  
+### ✅ Objective  
 Extract the **exact spans** (aspect terms) from a sentence that express opinions.
 
-### 🧠 **Model Details**  
+### 🧠 Model Details  
 - 🧱 **Architecture**: Bi-directional GRU / RNN  
 - 🔤 **Embedding**: GloVe / fastText (pre-trained)  
 - 🏷️ **Tagging Scheme**: BIO (Beginning, Inside, Outside)  
 - ❌ **Loss Function**: CrossEntropyLoss (with masking)  
 - 📊 **Evaluation Metric**: Chunk-level F1 (conlleval)
 
-### 🧪 **Best Performing Models**
+### 🧪 Best Performing Models
+
 | Model              | Validation F1 |
 |--------------------|---------------|
 | GRU + fastText     | **0.7165**    |
@@ -70,12 +71,12 @@ Extract the **exact spans** (aspect terms) from a sentence that express opinions
 
 ---
 
-## 💬 <span style="font-size: 1.5em;">Task 2 – Aspect Sentiment Classification (ASC)</span>
+## 💬 Task 2 – Aspect Sentiment Classification (ASC)
 
-### ✅ **Objective**  
+### ✅ Objective  
 For each extracted aspect term, predict its **sentiment label**.
 
-### 🧠 **Model Details**
+### 🧠 Model Details  
 - 🧱 **Architecture**: Bi-LSTM with Aspect-Specific Attention  
 - 🔤 **Embedding**: GloVe (300D)  
 - 🧠 **Input**: Context tokens + aspect term index  
@@ -83,10 +84,11 @@ For each extracted aspect term, predict its **sentiment label**.
 - ❌ **Loss Function**: CrossEntropyLoss  
 - 📊 **Evaluation Metric**: Accuracy
 
-### 🏆 **Best Results**
-| Metric                     | Score   |
-|---------------------------|---------|
-| Validation Accuracy       | **0.6523** |
-| Test Accuracy (Best Model)| **0.6250** |
+### 🏆 Best Results
+
+| Metric                     | Score     |
+|----------------------------|-----------|
+| Validation Accuracy        | **0.6523** |
+| Test Accuracy (Best Model) | **0.6250** |
 
 ---
