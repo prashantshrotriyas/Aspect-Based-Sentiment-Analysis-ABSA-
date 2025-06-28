@@ -43,7 +43,7 @@ Task1/                       # Aspect Term Extraction (ATE)
 ├── vocab_task1.json
 └── Aspect Term Extraction.ipynb
 
-task2/                       # Aspect Sentiment Classification (ASC)
+Task2/                       # Aspect Sentiment Classification (ASC)
 ├── train.json
 ├── train_task2.json
 ├── test.json
@@ -53,7 +53,8 @@ task2/                       # Aspect Sentiment Classification (ASC)
 ├── vocab_task2.json
 └── Aspect Based Sentiment Analysis.ipynb
 
-README.md                   # You're here!
+README.md                    # You're here!
+```
 
 ---
 
@@ -61,70 +62,69 @@ README.md                   # You're here!
 
 We use the **SemEval-2014 Task 4: Aspect-Based Sentiment Analysis (Restaurant Domain)** dataset.
 
-🔗 **Source**: [SemEval-2014 Task 4 Official Site](https://alt.qcri.org/semeval2014/task4/)
+🔗 **Source:** [SemEval-2014 Task 4 Official Site](https://alt.qcri.org/semeval2014/task4/)
 
-
-📂 **Structure**:
+📂 **Structure:**
 - Each sentence is annotated with:
-  - `aspect_terms`: opinion targets with start/end offsets and polarity
-  - `aspect_categories`: high-level categories with polarity (e.g., `food`, `service`)
+    - `aspect_terms`: opinion targets with start/end offsets and polarity
+    - `aspect_categories`: high-level categories with polarity (e.g., `food`, `service`)
 - Polarity labels: `positive`, `negative`, `neutral`, `conflict`
 
-📊 **Data Splits**:
-| Split       | Samples |
-|-------------|---------|
-| Train       | 2,435   |
-| Validation  | 304     |
-| Test        | 305     |
+📊 **Data Splits:**
 
-📝 **Format**: JSON, converted from the original XML for easier processing
+| Split      | Samples |
+|------------|---------|
+| Train      | 2,435   |
+| Validation | 304     |
+| Test       | 305     |
 
-🔍 **Domains**: Restaurant reviews (English)
+📝 **Format:** JSON (converted from the original XML for easier processing)
+
+🔍 **Domain:** Restaurant reviews (English)
 
 ---
 
-🧩 TASK 1 – ASPECT TERM EXTRACTION (ATE)
-✅ Objective
+## 🧩 TASK 1 – ASPECT TERM EXTRACTION (ATE)
+
+### ✅ Objective
 Extract exact spans from a sentence that represent opinion targets.
 
-🧠 Model Specs
-🔧 Architecture: Bi-GRU / RNN
+### 🧠 Model Specs
+- 🔧 **Architecture:** Bi-GRU / RNN
+- 🔤 **Embedding:** GloVe / fastText
+- 🏷️ **Tagging:** BIO (Beginning, Inside, Outside)
+- ❌ **Loss Function:** CrossEntropyLoss with masking
+- 📊 **Evaluation:** Chunk-level F1 (conlleval)
 
-🔤 Embedding: GloVe / fastText
+### 🏆 Results
 
-🏷️ Tagging: BIO (Beginning, Inside, Outside)
+| Model              | Validation F1 |
+|--------------------|---------------|
+| GRU + fastText     | 0.7165        |
+| GRU + GloVe        | 0.7092        |
+| RNN + fastText     | 0.7013        |
+| RNN + GloVe        | 0.7000        |
 
-❌ Loss Function: CrossEntropyLoss with masking
+**Test F1 (Best):** ⭐️ **0.7132**
 
-📊 Evaluation: Chunk-level F1 (conlleval)
+---
 
-🏆 Results
-Model	Validation F1
-GRU + fastText	0.7165
-GRU + GloVe	0.7092
-RNN + fastText	0.7013
-RNN + GloVe	0.7000
+## 💬 TASK 2 – ASPECT SENTIMENT CLASSIFICATION (ASC)
 
-Test F1 (Best): ⭐️ 0.7132
-
-💬 TASK 2 – ASPECT SENTIMENT CLASSIFICATION (ASC)
-✅ Objective
+### ✅ Objective
 For each aspect term, predict its sentiment label.
 
-🧠 Model Specs
-🔧 Architecture: Bi-LSTM with Aspect-Specific Attention
+### 🧠 Model Specs
+- 🔧 **Architecture:** Bi-LSTM with Aspect-Specific Attention
+- 🔤 **Embedding:** GloVe (300D)
+- 🧠 **Input:** Context + aspect indices
+- 🎯 **Attention:** Focus on relevant context around each aspect
+- ❌ **Loss Function:** CrossEntropyLoss
+- 📊 **Evaluation:** Accuracy
 
-🔤 Embedding: GloVe (300D)
+### 🏆 Results
 
-🧠 Input: Context + aspect indices
-
-🎯 Attention: Focus on relevant context around each aspect
-
-❌ Loss Function: CrossEntropyLoss
-
-📊 Evaluation: Accuracy
-
-🏆 Results
-Metric	Score
-Validation Accuracy	0.6523
-Test Accuracy (Best Model)	0.6250
+| Metric                      | Score  |
+|-----------------------------|--------|
+| Validation Accuracy         | 0.6523 |
+| Test Accuracy (Best Model) | 0.6250 |
