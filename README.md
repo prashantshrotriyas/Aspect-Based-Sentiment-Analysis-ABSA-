@@ -55,6 +55,34 @@ task2/                       # Aspect Sentiment Classification (ASC)
 
 README.md                   # You're here!
 
+---
+
+## 💾 DATASET
+
+We use the **SemEval-2014 Task 4: Aspect-Based Sentiment Analysis (Restaurant Domain)** dataset.
+
+🔗 **Source**: [SemEval-2014 Task 4 Official Site](https://alt.qcri.org/semeval2014/task4/)
+
+
+📂 **Structure**:
+- Each sentence is annotated with:
+  - `aspect_terms`: opinion targets with start/end offsets and polarity
+  - `aspect_categories`: high-level categories with polarity (e.g., `food`, `service`)
+- Polarity labels: `positive`, `negative`, `neutral`, `conflict`
+
+📊 **Data Splits**:
+| Split       | Samples |
+|-------------|---------|
+| Train       | 2,435   |
+| Validation  | 304     |
+| Test        | 305     |
+
+📝 **Format**: JSON, converted from the original XML for easier processing
+
+🔍 **Domains**: Restaurant reviews (English)
+
+---
+
 🧩 TASK 1 – ASPECT TERM EXTRACTION (ATE)
 ✅ Objective
 Extract exact spans from a sentence that represent opinion targets.
