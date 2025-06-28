@@ -23,11 +23,6 @@ Traditional sentiment analysis gives a single label to a sentence, but real-worl
 > → `food` → ⭐️ **positive**  
 > → `service` → ❌ **negative**
 
-🔍 **ABSA** offers **fine-grained insights**, critical in domains like:
-- Restaurant reviews
-- Product analysis
-- Customer feedback
-
 ---
 
 ## 📁 PROJECT STRUCTURE
@@ -53,7 +48,7 @@ Task2/                       # Aspect Sentiment Classification (ASC)
 ├── vocab_task2.json
 └── Aspect Based Sentiment Analysis.ipynb
 
-README.md                    # You're here!
+README.md                
 ```
 
 ---
@@ -90,10 +85,10 @@ We use the **SemEval-2014 Task 4: Aspect-Based Sentiment Analysis (Restaurant Do
 Extract exact spans from a sentence that represent opinion targets.
 
 ### 🧠 Model Specs
-- 🔧 **Architecture:** Bi-GRU / RNN
+- 🔧 **Architecture:** Bi-GRU / Bi-RNN
 - 🔤 **Embedding:** GloVe / fastText
 - 🏷️ **Tagging:** BIO (Beginning, Inside, Outside)
-- ❌ **Loss Function:** CrossEntropyLoss with masking
+- ❌ **Loss Function:** CrossEntropyLoss 
 - 📊 **Evaluation:** Chunk-level F1 (conlleval)
 
 ### 🏆 Results
@@ -105,7 +100,7 @@ Extract exact spans from a sentence that represent opinion targets.
 | RNN + fastText     | 0.7013        |
 | RNN + GloVe        | 0.7000        |
 
-**Test F1 (Best):** ⭐️ **0.7132**
+**Test F1 (Best):** ⭐️ **0.7165**
 
 ---
 
@@ -128,3 +123,39 @@ For each aspect term, predict its sentiment label.
 |-----------------------------|--------|
 | Validation Accuracy         | 0.6523 |
 | Test Accuracy (Best Model) | 0.6250 |
+
+---
+
+### 1. **Clone the Repository**
+```bash
+git clone https://github.com/prashantshrotriyas/Aspect-Based-Sentiment-Analysis-ABSA-.git
+cd Aspect-Based-Sentiment-Analysis
+```
+
+### 2. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+### 3. **Prepare the Data**
+The dataset is already included in the `Task1/` and `Task2/` folders. No extra download is needed.
+
+### 3.1 **Configure File Paths**
+Ensure that all file paths in the notebooks match the provided directory structure (e.g., `Task1/train.json`, `Task2/train.json`) before running any code.
+
+### 4. **Run Aspect Term Extraction (ATE)**
+Open and run the notebook:
+```
+Task1/Aspect Term Extraction.ipynb
+```
+
+### 5. **Run Aspect Sentiment Classification (ASC)**
+Open and run the notebook:
+```
+Task2/Aspect Based Sentiment Analysis.ipynb
+```
+
+### 6. **Results**
+Model outputs and evaluation metrics will be displayed in the respective notebooks or saved in the output directory.
+
+---
