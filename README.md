@@ -158,4 +158,12 @@ Task2/Aspect Based Sentiment Analysis.ipynb
 ### 6. **Results**
 Model outputs and evaluation metrics will be displayed in the respective notebooks or saved in the output directory.
 
+##  Authors
+
+| Name              | Roll Number |
+|-------------------|-------------|
+| Prashant Shrotriya| MT24065     |
+| Saarim Khan       | MT24077     |
+| Vatsaly Rai       | MT24144     |
+
 ---
