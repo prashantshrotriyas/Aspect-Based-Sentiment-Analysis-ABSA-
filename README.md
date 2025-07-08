@@ -1,4 +1,4 @@
-#  ASPECT-BASED SENTIMENT ANALYSIS (ABSA)
+#  Extracting and Interpreting Sentiment via Aspects terms
 
 A two-stage pipeline for **Aspect-Based Sentiment Analysis**, designed to extract opinion targets and classify sentiments at a fine-grained level.
 
